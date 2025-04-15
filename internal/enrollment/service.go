@@ -4,6 +4,9 @@ import (
 	"context"
 	"github.com/og11423074s/gocourse_enrollment/internal/domain"
 	"log"
+
+	courseSdk "github.com/og11423074s/go_course_sdk/course"
+	userSdk "github.com/og11423074s/go_course_sdk/user"
 )
 
 type (
@@ -20,15 +23,19 @@ type (
 	}
 
 	service struct {
-		log  *log.Logger
-		repo Repository
+		log       *log.Logger
+		userTrans userSdk.Transport
+		courseSdk courseSdk.Transport
+		repo      Repository
 	}
 )
 
-func NewService(log *log.Logger, repo Repository) Service {
+func NewService(log *log.Logger, repo Repository, courseTrans courseSdk.Transport, userTrans userSdk.Transport) Service {
 	return &service{
-		log:  log,
-		repo: repo,
+		log:       log,
+		userTrans: userTrans,
+		courseSdk: courseTrans,
+		repo:      repo,
 	}
 }
 
@@ -38,6 +45,13 @@ func (s *service) Create(ctx context.Context, userID, courseID string) (*domain.
 		UserID:   userID,
 		CourseID: courseID,
 		Status:   "P",
+	}
+	if _, err := s.userTrans.Get(userID); err != nil {
+		return nil, err
+	}
+
+	if _, err := s.courseSdk.Get(courseID); err != nil {
+		return nil, err
 	}
 
 	if err := s.repo.Create(ctx, enroll); err != nil {

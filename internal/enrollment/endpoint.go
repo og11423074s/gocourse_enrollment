@@ -5,6 +5,9 @@ import (
 	"errors"
 	"github.com/og11423074s/go_lib_response/response"
 	"github.com/og11423074s/gocourse_meta/meta"
+
+	courseSdk "github.com/og11423074s/go_course_sdk/course"
+	userSdk "github.com/og11423074s/go_course_sdk/user"
 )
 
 type (
@@ -61,6 +64,12 @@ func makeCreateEndpoint(s Service) Controller {
 
 		enroll, err := s.Create(ctx, req.UserID, req.CourseID)
 		if err != nil {
+
+			if errors.As(err, &userSdk.ErrNotFound{}) ||
+				errors.As(err, &courseSdk.ErrNotFound{}) {
+				return nil, response.NotFound(err.Error())
+			}
+
 			return nil, response.InternalServerError(err.Error())
 		}
 

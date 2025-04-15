@@ -11,6 +11,9 @@ import (
 	"github.com/og11423074s/gocourse_enrollment/pkg/bootstrap"
 	"net/http"
 	"time"
+
+	courseSdk "github.com/og11423074s/go_course_sdk/course"
+	userSdk "github.com/og11423074s/go_course_sdk/user"
 )
 
 func main() {
@@ -26,6 +29,9 @@ func main() {
 		logger.Fatal("PAGINATION_LIMIT_DEFAULT is not set")
 	}
 
+	courseTrans := courseSdk.NewHttpClient(os.Getenv("API_COURSE_URL"), "")
+	userTrans := userSdk.NewHttpClient(os.Getenv("API_USER_URL"), "")
+
 	// Connect to database
 	db, err := bootstrap.DBConnection()
 
@@ -39,7 +45,7 @@ func main() {
 	enrollRepo := enrollment.NewRepo(logger, db)
 
 	// Enroll service
-	enrollSrv := enrollment.NewService(logger, enrollRepo)
+	enrollSrv := enrollment.NewService(logger, enrollRepo, courseTrans, userTrans)
 
 	// Enroll endpoints
 	h := handler.NewEnrollmentHandler(ctx, enrollment.MakeEndpoints(enrollSrv, enrollment.Config{LimPageDef: pagLimDef}))
