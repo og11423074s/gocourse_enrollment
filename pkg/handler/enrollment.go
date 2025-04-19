@@ -38,6 +38,7 @@ func NewEnrollmentHandler(ctx context.Context, endpoints enrollment.Endpoints) h
 		endpoint.Endpoint(endpoints.Update),
 		decodeUpdateEnrollment,
 		encodeResponse,
+		opts...,
 	)).Methods("PATCH")
 
 	return r

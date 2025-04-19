@@ -29,7 +29,7 @@ func main() {
 		logger.Fatal("PAGINATION_LIMIT_DEFAULT is not set")
 	}
 
-	courseTrans := courseSdk.NewHttpClient(os.Getenv("API_COURSE_URL"), "")
+	courseTrans := courseSdk.NewHttpClient(os.Getenv("API_COURSE_URL"), os.Getenv("API_COURSE_TOKEN"))
 	userTrans := userSdk.NewHttpClient(os.Getenv("API_USER_URL"), "")
 
 	// Connect to database

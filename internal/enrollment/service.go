@@ -2,7 +2,7 @@ package enrollment
 
 import (
 	"context"
-	"github.com/og11423074s/gocourse_enrollment/internal/domain"
+	"github.com/og11423074s/gocourse_domain/domain"
 	"log"
 
 	courseSdk "github.com/og11423074s/go_course_sdk/course"
@@ -44,7 +44,7 @@ func (s *service) Create(ctx context.Context, userID, courseID string) (*domain.
 	enroll := &domain.Enrollment{
 		UserID:   userID,
 		CourseID: courseID,
-		Status:   "P",
+		Status:   domain.Pending,
 	}
 	if _, err := s.userTrans.Get(userID); err != nil {
 		return nil, err
@@ -70,6 +70,15 @@ func (s *service) GetAll(ctx context.Context, filters Filters, offSet, limit int
 	return enrollments, nil
 }
 func (s *service) Update(ctx context.Context, id string, status *string) error {
+
+	if status != nil {
+		switch domain.EnrollmentStatus(*status) {
+		case domain.Pending, domain.Active, domain.Studying, domain.Inactive:
+		default:
+			return ErrorInvalidStatus{*status}
+		}
+	}
+
 	if err := s.repo.Update(ctx, id, status); err != nil {
 		return err
 	}

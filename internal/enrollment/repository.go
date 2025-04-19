@@ -2,7 +2,7 @@ package enrollment
 
 import (
 	"context"
-	"github.com/og11423074s/gocourse_enrollment/internal/domain"
+	"github.com/og11423074s/gocourse_domain/domain"
 	"gorm.io/gorm"
 	"log"
 )

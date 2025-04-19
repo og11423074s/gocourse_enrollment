@@ -2,7 +2,7 @@ package bootstrap
 
 import (
 	"fmt"
-	"github.com/og11423074s/gocourse_enrollment/internal/domain"
+	"github.com/og11423074s/gocourse_domain/domain"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"

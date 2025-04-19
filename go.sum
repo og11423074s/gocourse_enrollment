@@ -25,8 +25,8 @@ github.com/og11423074s/go_course_sdk v0.0.2 h1:wh1E4780C0Z+FPFLEK6EUrCAAt+cHcxTk
 github.com/og11423074s/go_course_sdk v0.0.2/go.mod h1:4nLbCDEoSfo0gqvpbc+6QvrGORgmRJzUm+QSp6P9btY=
 github.com/og11423074s/go_lib_response v0.0.1 h1:dBoMuVpH/q/DAnOTqX6t9pp9xL2aCxZIfifmqlm3RYE=
 github.com/og11423074s/go_lib_response v0.0.1/go.mod h1:BPKrNEivS38rbprtrXX9xt/gUmXS1BVGvj6W5cyBkVs=
-github.com/og11423074s/gocourse_domain v0.0.1 h1:mOcKjaWwJ61BY0vqYFwBqMNLQuGafwPPsRD2RF1VHm0=
-github.com/og11423074s/gocourse_domain v0.0.1/go.mod h1:ffLv1jUp1M4RDdDKe0oh2XHwTSRQ4h8l6zVEcIu9uP4=
+github.com/og11423074s/gocourse_domain v0.0.3 h1:wkH/qt2844OpDLj0XmJnavzD7yd+zvu7kxkv+DrifnM=
+github.com/og11423074s/gocourse_domain v0.0.3/go.mod h1:/ObUK45YNIqhxdetqfzfqPNDWHrFF5D23Zd6P+r+JwQ=
 github.com/og11423074s/gocourse_meta v0.0.1 h1:Oae6NcCQtdrlkYYG7Uad+7B1qu6Mo3eBPEM+7fTKZyI=
 github.com/og11423074s/gocourse_meta v0.0.1/go.mod h1:iI/MaeXE2raPNjYDAGOAnSBJisRyS28q4scOm3ZmJIg=
 golang.org/x/text v0.24.0 h1:dd5Bzh4yt5KYA8f9CJHCP4FB4D51c2c6JvN37xJJkJ0=
